@@ -4,5 +4,5 @@
 
 ## The parameters are password length, which must be between 8 and 128 characters, uppercase, lowercase, special characters and numbers.   The user can not select to have no character types.  
 
-![Image of Password generator](https://password-generator.github.com/assets/images/appimg.png)
+![Image of Password generator](https://github.com/terrylthompsonintx/password-generator/blob/master/assets/images/appimg.png)
 
