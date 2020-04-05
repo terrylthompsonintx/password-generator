@@ -1,11 +1,12 @@
 // Assignment code here
 
-//Generates random whole number between 0 and the max param
+//Generates random whole number between 0 and the max parameter
 function randomG (max){
   var rNumber = Math.floor(Math.random() * max);
   return(rNumber);
 }
 
+//prompts the user for password length
 function getLength(){
   length =window.prompt('Enter the length of the desired password.  Must be between 8 - 128');
   while(length <8 || length > 128){
@@ -14,33 +15,40 @@ function getLength(){
   return(length);
 };
 
+//Randomly selects an uppercase character and returns it.
 function addUp(){
   var upperChars="ABCDEFGHAJKLMNOPQRSTUVWXYZ";
   paramMax = upperChars.length;
   newChar = upperChars.charAt(randomG(paramMax));
   return(newChar);
 }
+
+//Randomly selects a lowercase character and returns it.
 function addLow(){
   var lowerChars="abcdefghijklmnopqrstuvwxyz";
   paramMax = lowerChars.length;
   newChar = lowerChars.charAt(randomG(paramMax));
   return(newChar);
 }
+
+//Randomly selects a special character and returns it.
 function addSpec(){
   var specChars= " !#$%&()*+,-./:;<=>?@[\]^_`{|}~";  //append " to this string"
   paramMax = specChars.length;
   newChar = specChars.charAt(randomG(paramMax));
   return(newChar);
 }
+
+//Randomly generates a number between 0 and 9
 function addNum(){
   newNum = randomG(10);
   newChar = newNum.toString();
   return(newChar);
 }
 
+//Prompts the user for the parameters of the password and generates it.
 function generatePassword(){
   var pwordLength = getLength();
-
   do {
     var pwordUpper = window.confirm('Include upper case characters?');
     var pwordLower = window.confirm('Include lower case characters?');
@@ -192,7 +200,34 @@ function generatePassword(){
           break;
       }
     }
-    if (pwordUpper && !pwordLower && !pwordNum && !pwordSpecial){
+
+    if (!pwordUpper && !pwordLower && pwordNum && pwordSpecial){
+      var rule=randomG(2); //Select a random rule.
+      switch (rule){
+          case 0:
+          //number
+          pwd = pwd.concat(addNum());
+          break;
+        case 1:
+          //special chars
+          pwd = pwd.concat(addSpec());
+          break;
+      }
+    }
+    if (pwordUpper && !pwordLower && !pwordNum && pwordSpecial){
+      var rule=randomG(2); //Select a random rule.
+      switch (rule){
+        case 0:
+          //upper
+          pwd = pwd.concat(addUp());
+          break;
+        case 1:
+          //special chars
+          pwd = pwd.concat(addSpec());
+          break;
+      }
+    }
+   if (pwordUpper && !pwordLower && !pwordNum && !pwordSpecial){
      
       pwd = pwd.concat(addUp());
     }
@@ -206,27 +241,7 @@ function generatePassword(){
     if (!pwordUpper && !pwordLower && !pwordNum && pwordSpecial){
       pwd = pwd.concat(addSpec());
     }
-    
-    
-   
 
-    
-    
-   //1101
-
-    
-
-    //specials only
-
-    //lower and numbers only
-
-    //upper and numbers only
-
-    //specials and and numbers only
-
-
-
-    console.log(pwd);
   }
 
   return(pwd);
